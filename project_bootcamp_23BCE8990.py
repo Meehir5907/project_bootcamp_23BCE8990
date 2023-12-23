@@ -5,7 +5,6 @@ df = pd.read_csv('heart_failure_clinical_records.csv')
 
 print("First few rows of the dataset:")
 print(df.head())
-print(df)
 print("\nInformation about columns and data types:")
 print(df.info())
 
@@ -30,7 +29,7 @@ axes[0].set_title('Histogram of Age')
 axes[0].grid(True)
 
 ds = df.groupby(['smoking', 'DEATH_EVENT']).size().unstack()
-percentages = ds.div(ds.sum(axis=1), axis=0) * 100  # Calculate percentages
+percentages = ds.div(ds.sum(axis=1), axis=0) * 100
 
 bars = ds.plot(kind='bar', stacked=True, color=['green', 'red'], ax=axes[1])
 axes[1].set_xlabel('Smoking')
