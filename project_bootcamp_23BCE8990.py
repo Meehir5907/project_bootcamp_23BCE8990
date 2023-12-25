@@ -7,9 +7,10 @@ print("First few rows of the dataset:")
 print(df.head())
 print("\nInformation about columns and data types:")
 print(df.info())
-
-print("\nViewing specific columns (e.g., 'Age', 'Sex', 'Death Event'):")
-print(df[['age', 'sex', 'DEATH_EVENT']].head())
+i = str(input("Enter the categories you want to be displayed in[] and each in quotes: "))
+i = eval(i)
+gd = df.groupby(i).size().unstack()
+print(gd.head)
 
 columns_to_drop = ['anaemia', 'diabetes']
 df.drop(columns=columns_to_drop,inplace=True)
@@ -27,7 +28,6 @@ axes[0].set_xlabel('Age')
 axes[0].set_ylabel('Frequency')
 axes[0].set_title('Histogram of Age')
 axes[0].grid(True)
-
 ds = df.groupby(['smoking', 'DEATH_EVENT']).size().unstack()
 percentages = ds.div(ds.sum(axis=1), axis=0) * 100
 
